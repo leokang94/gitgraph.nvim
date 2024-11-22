@@ -34,7 +34,10 @@ function M.git_log_pretty(args, date_format)
     args.skip and ('--skip=%d'):format(args.skip) or '', -- skip
   }
 
-  local git_cmd = (cli):format(unpack(cli_args))
+  print(args.cli)
+  print(cli:format(unpack(cli_args)))
+
+  local git_cmd = args.cli and args.cli or (cli):format(unpack(cli_args))
 
   local io_handle = io.popen(git_cmd)
   if not io_handle then
